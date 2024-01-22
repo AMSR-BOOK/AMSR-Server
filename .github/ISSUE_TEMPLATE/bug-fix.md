@@ -2,7 +2,7 @@
 name: bug fix
 about: Create a report to help us improve
 title: "[Fix] "
-labels: bug
+labels: fix
 assignees: yebin-choi
 
 ---

@@ -2,7 +2,7 @@
 name: new feature
 about: Suggest an idea for this project
 title: "[Feat] "
-labels: enhancement
+labels: feat
 assignees: yebin-choi
 
 ---
