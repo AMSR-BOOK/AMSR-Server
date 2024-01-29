@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import lombok.Builder.Default;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -20,8 +20,12 @@ public class ReadingTime extends BaseTime {
     @Column(name = "reading_time_id", nullable = false)
     private Long id;
     @Column
-    @Default
-    private Integer minute;
+    private Integer timeTaken;
     @ManyToOne
     private Reading reading;
+
+    @Builder
+    public ReadingTime(Integer timeTaken) {
+        this.timeTaken = timeTaken;
+    }
 }
