@@ -19,6 +19,20 @@ public class BookInfoService {
     private final BookRepository bookRepository;
     private final AladinOpenApiRequestService aladinOpenApiRequestService;
 
+    @Transactional
+    public void saveBookInfo(String isbn) {
+        bookRepository.findById(isbn).orElseGet(() -> {
+            log.info("isbn: {}", isbn);
+            try {
+                Book book = aladinOpenApiRequestService.getBookInfoByIsbn(isbn);
+                return bookRepository.save(book);
+            } catch (Exception e) {
+                log.error("Error while saving book info: {}", e.getMessage(), e);
+                return null;
+            }
+        });
+    }
+
     public List<BookSearchItemResponseDto> searchBookByKeyword(String keyword) {
         List<Book> allByTitleContains = bookRepository.findAllByTitleContains(keyword);
         List<Book> allByAuthorContains = bookRepository.findAllByAuthorContains(keyword);
