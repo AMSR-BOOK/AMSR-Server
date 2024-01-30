@@ -40,3 +40,5 @@ out/
 src/main/resources/*.yml
 .DS_Store
 *.log
+local.sh
+docker.sh
