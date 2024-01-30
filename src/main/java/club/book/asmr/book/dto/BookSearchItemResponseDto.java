@@ -29,7 +29,7 @@ public class BookSearchItemResponseDto implements Serializable {
                 .sideCoverImageUrl(book.getSideCoverImageUrl())
                 .author(book.getAuthor())
                 .publisher(book.getPublisher())
-                .status(Status.EMPTY)
+                .status(Status.NONE)
                 .build();
     }
 
