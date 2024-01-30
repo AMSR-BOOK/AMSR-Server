@@ -19,13 +19,13 @@ public enum ErrorStatus {
      * 401 UNAUTHORIZED
      */
     EXPIRED_ACCESS_TOKEN(HttpStatus.UNAUTHORIZED, "만료된 엑세스 토큰입니다."),
-    CANNOT_FOUND_USER(HttpStatus.NOT_FOUND, "존재하지 않는 유저입니다."),
 
     /**
      * 404 NOT FOUND
      */
     NOT_FOUND_USER_EXCEPTION(HttpStatus.NOT_FOUND, "존재하지 않는 유저입니다"),
     NOT_FOUND_TOKEN_EXCEPTION(HttpStatus.NOT_FOUND, "토큰을 찾을 수 없습니다."),
+    NOT_FOUND_BOOK_EXCEPTION(HttpStatus.NOT_FOUND, "존재하지 않는 책입니다."),
 
     /**
      * 409 CONFLICT
