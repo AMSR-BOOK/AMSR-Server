@@ -42,4 +42,22 @@ public class ReadingService {
                         .build())
         );
     }
+
+    @Transactional
+    public void updateRecommend(BookRecommendUpdateRequestDto recommendUpdateRequestDto) {
+        User user = userRepository.findById(recommendUpdateRequestDto.userId()).orElseThrow(
+                () -> new CustomException(ErrorStatus.NOT_FOUND_USER_EXCEPTION)
+        );
+        Book book = bookRepository.findById(recommendUpdateRequestDto.isbn()).orElseThrow(
+                () -> new CustomException(ErrorStatus.NOT_FOUND_BOOK_EXCEPTION)
+        );
+        readingRepository.findByUserAndBook(user, book).ifPresentOrElse(
+                reading -> reading.updateRecommend(Recommend.from(recommendUpdateRequestDto.recommend())),
+                () -> readingRepository.save(Reading.builder()
+                        .user(user)
+                        .book(book)
+                        .recommend(Recommend.from(recommendUpdateRequestDto.recommend()))
+                        .build())
+        );
+    }
 }
