@@ -10,18 +10,7 @@ import org.springframework.context.annotation.Description;
 @SpringBootTest(properties = "spring.profiles.active=dev")
 class BookInfoServiceTest {
     @Autowired
-    private Data4LibraryOpenApiRequestService data4LibraryOpenApiRequestService;
-    @Autowired
-    private AladinOpenApiRequestService aladinOpenApiRequestService;
-    @Autowired
     private BookInfoService bookInfoService;
-
-    @Description("책 정보 저장 테스트")
-//    @Test
-    void initBookInfo() {
-        data4LibraryOpenApiRequestService.getBestSellers()
-                .forEach(isbn -> bookInfoService.saveBookInfo(isbn));
-    }
 
     @Description("책 검색 테스트 : 작가")
     @Test
