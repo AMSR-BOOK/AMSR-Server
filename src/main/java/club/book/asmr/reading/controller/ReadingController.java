@@ -27,4 +27,16 @@ public class ReadingController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @PostMapping("api/v1/book/recommend")
+    public ResponseEntity<?> bookRecommend(@RequestBody BookRecommendUpdateRequestDto recommendUpdateRequestDto) {
+        try {
+            readingService.updateRecommend(recommendUpdateRequestDto);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (CustomException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
 }
