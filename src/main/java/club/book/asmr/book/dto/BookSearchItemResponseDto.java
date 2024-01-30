@@ -1,6 +1,7 @@
 package club.book.asmr.book.dto;
 
 import club.book.asmr.book.entity.Book;
+import club.book.asmr.reading.data.Recommend;
 import club.book.asmr.reading.data.Status;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public class BookSearchItemResponseDto implements Serializable {
     String author;
     String publisher;
     Status status;
+    Recommend recommend;
 
     public static BookSearchItemResponseDto of(Book book) {
         return BookSearchItemResponseDto.builder()
@@ -30,10 +32,15 @@ public class BookSearchItemResponseDto implements Serializable {
                 .author(book.getAuthor())
                 .publisher(book.getPublisher())
                 .status(Status.NONE)
+                .recommend(Recommend.EMPTY)
                 .build();
     }
 
     public void updateStatus(Status status) {
         this.status = status;
+    }
+
+    public void updateRecommend(Recommend recommend) {
+        this.recommend = recommend;
     }
 }
