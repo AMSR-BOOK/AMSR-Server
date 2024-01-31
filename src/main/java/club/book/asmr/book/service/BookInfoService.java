@@ -34,19 +34,19 @@ public class BookInfoService {
     }
 
     public List<BookSearchItemResponseDto> searchBookByKeyword(String keyword) {
-        List<Book> allByTitleContains = bookRepository.findAllByTitleContains(keyword);
-        List<Book> allByAuthorContains = bookRepository.findAllByAuthorContains(keyword);
-        List<Book> allByPublisherContains = bookRepository.findAllByPublisherContains(keyword);
-
         Set<BookSearchItemResponseDto> bookSearchItemResponseDtos = new HashSet<>();
-        for (Book book : allByTitleContains) {
-            bookSearchItemResponseDtos.add(BookSearchItemResponseDto.of(book));
-        }
-        for (Book book : allByAuthorContains) {
-            bookSearchItemResponseDtos.add(BookSearchItemResponseDto.of(book));
-        }
-        for (Book book : allByPublisherContains) {
-            bookSearchItemResponseDtos.add(BookSearchItemResponseDto.of(book));
+        try {
+            Long.parseLong(keyword);
+            log.info("keyword is isbn");
+            bookRepository.findById(keyword)
+                    .ifPresent(book -> bookSearchItemResponseDtos.add(BookSearchItemResponseDto.of(book)));
+        } catch (NumberFormatException e) {
+            List<Book> allByTitleContains = bookRepository.findAllByTitleContains(keyword);
+            allByTitleContains.stream().map(BookSearchItemResponseDto::of).forEach(bookSearchItemResponseDtos::add);
+            List<Book> allByAuthorContains = bookRepository.findAllByAuthorContains(keyword);
+            allByAuthorContains.stream().map(BookSearchItemResponseDto::of).forEach(bookSearchItemResponseDtos::add);
+            List<Book> allByPublisherContains = bookRepository.findAllByPublisherContains(keyword);
+            allByPublisherContains.stream().map(BookSearchItemResponseDto::of).forEach(bookSearchItemResponseDtos::add);
         }
 
         return new ArrayList<>(bookSearchItemResponseDtos);
