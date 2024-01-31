@@ -15,11 +15,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 
+@Table
 @Entity
 @Getter
 @NoArgsConstructor
@@ -31,7 +33,7 @@ public class Reading extends BaseTime {
     @Enumerated(EnumType.STRING)
     @Column
     private Status status;
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String review;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'empty'")
@@ -44,7 +46,7 @@ public class Reading extends BaseTime {
     @Column
     private Integer numberOfPagesRead;
     @ManyToOne
-    @JoinColumn(name = "book_isbn")
+    @JoinColumn(name = "isbn")
     private Book book;
     @ManyToOne
     @JoinColumn(name = "user_id")
