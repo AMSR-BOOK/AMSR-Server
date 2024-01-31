@@ -5,7 +5,6 @@ import club.book.asmr.book.service.BookInfoService;
 import club.book.asmr.book.service.Data4LibraryOpenApiRequestService;
 import club.book.asmr.reading.dto.BookRecommendUpdateRequestDto;
 import club.book.asmr.reading.dto.ReadingStatusUpdateRequestDto;
-import club.book.asmr.reading.service.ReadingService;
 import club.book.asmr.user.data.AuthProvider;
 import club.book.asmr.user.data.Role;
 import club.book.asmr.user.entity.User;
@@ -25,8 +24,6 @@ class DevDataInitTest {
     private AladinOpenApiRequestService aladinOpenApiRequestService;
     @Autowired
     private BookInfoService bookInfoService;
-    @Autowired
-    private ReadingService readingService;
 
     @Description("관리자 계정 저장 테스트")
 //    @Test
