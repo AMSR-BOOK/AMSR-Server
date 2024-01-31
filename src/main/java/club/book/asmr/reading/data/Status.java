@@ -12,7 +12,7 @@ public enum Status {
     DONE("다 읽은"),
     PAUSED("나중에 읽을"),
     STOPPED("그만 읽을"),
-    EMPTY("상태 없음");
+    NONE("상태 없음");
 
     private final String title;
 
@@ -20,6 +20,6 @@ public enum Status {
         return Arrays.stream(Status.values())
                 .filter(status -> status.name().equals(name.toUpperCase()))
                 .findFirst()
-                .orElse(EMPTY);
+                .orElse(NONE);
     }
 }
